@@ -13,17 +13,12 @@ class App extends Component {
     }
   }
 
-  Update = (event, type, text) => {
-    event.preventDefault();
-    this.Search(type, text);
-  }
+  Search = (type, search_string) => { 
 
-  Search = (type, text) => {
-    if (!text) text = ' '; 
-    const text_string = text.split(' ').join('+');
-    axios.get(`http://api.giphy.com/v1/gifs/${type}?${text ? `q=${text_string}&` :  ''}api_key=${API_KEY}`)
+    axios.get(`http://api.giphy.com/v1/gifs/${type}?${type === 'search' ? `q=${search_string.split(' ').join('+')}&` :  ''}api_key=${API_KEY}`)
     .then(res => {
       const data = res.data.data;
+      console.log(data);
       const search_gifs = data.map((gif) => gif.images.original);
       this.setState({gifs: search_gifs});
     })
@@ -37,7 +32,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <SearchField update={this.Update} />
+        <SearchField update={this.Search} />
         <GifCard gifs={this.state.gifs} />
       </div>
     );

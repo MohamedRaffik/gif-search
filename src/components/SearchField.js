@@ -10,9 +10,14 @@ class SearchField extends Component {
     };
   }
 
+  Search = (e) => {
+    e.preventDefault();
+    this.props.update(this.state.type, this.state.searchText);
+  }
+
   render() {
     return (
-      <form onSubmit={(e) => this.props.update(e, this.state.searchText, this.state.type)}>
+      <form onSubmit={(e) => this.Search(e)}>
         <input 
           type="text" 
           placeholder="Search GIFS" 
