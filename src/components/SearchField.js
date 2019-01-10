@@ -17,16 +17,18 @@ class SearchField extends Component {
 
   render() {
     return (
-      <form onSubmit={(e) => this.Search(e)}>
-        <input 
+      <form className="flex-col" onSubmit={(e) => this.Search(e)}>
+        <input className="search"
           type="text" 
           placeholder="Search GIFS" 
           value={this.state.searchText} 
           onChange={(e) => this.setState({searchText: e.target.value})} 
         />
-        <input type="submit" value="Search" onClick={() => this.setState({type: 'search'})} />
-        <input type="submit" value="Trending " onClick={() => this.setState({type: 'trending', searchText:''})} />
-        <input type="submit" value="Random" onClick={() => this.setState({type: 'random', searchText:''})} />
+        <div className="flex-row buttons">
+          <input type="submit" value="Search" onClick={() => this.setState({type: 'search'})} />
+          <input type="submit" value="Trending " onClick={() => this.setState({type: 'trending'})} />
+          <input type="submit" value="Random" onClick={() => this.setState({type: 'random'})} />
+        </div>
       </form>
     );
   }
