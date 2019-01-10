@@ -30,7 +30,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1 class="title">GIF Search</h1>
+        <h1 className="title">GIF Search</h1>
         <SearchField update={this.Search} />
         <GifCard gifs={this.state.gifs} />
       </div>
