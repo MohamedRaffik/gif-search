@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 // Class component
-
 class SearchField extends Component {
   constructor(props) {
     super(props);
