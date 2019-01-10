@@ -25,8 +25,8 @@ class SearchField extends Component {
           onChange={(e) => this.setState({searchText: e.target.value})} 
         />
         <input type="submit" value="Search" onClick={() => this.setState({type: 'search'})} />
-        <input type="submit" value="Trending " onClick={() => this.setState({type: 'trending'})} />
-        <input type="submit" value="Random" onClick={() => this.setState({type: 'random'})} />
+        <input type="submit" value="Trending " onClick={() => this.setState({type: 'trending', searchText:''})} />
+        <input type="submit" value="Random" onClick={() => this.setState({type: 'random', searchText:''})} />
       </form>
     );
   }
