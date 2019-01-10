@@ -14,7 +14,6 @@ class App extends Component {
   }
 
   Search = (type, search_string) => { 
-
     axios.get(`http://api.giphy.com/v1/gifs/${type}?${type === 'search' ? `q=${search_string.split(' ').join('+')}&` :  ''}api_key=${API_KEY}`)
     .then(res => {
       const data = res.data.data;
