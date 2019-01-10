@@ -13,12 +13,12 @@ class App extends Component {
     }
   }
 
-  Update(event, type, text) {
+  Update = (event, type, text) => {
     event.preventDefault();
     this.Search(type, text);
   }
 
-  Search(type, text) {
+  Search = (type, text) => {
     const text_string = text.split(' ').join('+');
     axios.get(`http://api.giphy.com/v1/gifs/${type}?${text ? `q=${text_string}&` :  ''}api_key=${API_KEY}`)
     .then(res => {
