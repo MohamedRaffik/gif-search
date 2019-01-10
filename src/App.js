@@ -1,25 +1,38 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import SearchField from './components/SearchField';
+import GifCard from './components/GifCard';
+import axios from 'axios';
+import API_KEY from './api_key';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      gifs: []
+    }
+  }
+
+  Search = (type, search_string) => { 
+    axios.get(`http://api.giphy.com/v1/gifs/${type}?${type === 'search' ? `q=${search_string.split(' ').join('+')}&` :  ''}api_key=${API_KEY}`)
+    .then(res => {
+      const data = type === 'random' ? Array(1).fill(res.data.data) : (res.data.data) ;
+      const search_gifs = data.map((gif) => gif.images.original);
+      this.setState({gifs: search_gifs});
+    })
+    .catch(err => console.error(err));
+  }
+
+  componentDidMount() {
+    this.Search('trending');
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <h1 className="title">GIF Search</h1>
+        <SearchField update={this.Search} />
+        <GifCard gifs={this.state.gifs} />
       </div>
     );
   }
