@@ -19,6 +19,9 @@ body {
 }
 
 .search {
+  outline: none;
+  padding: 5px;
+  border-radius: 20px;
   font-size: 18px;
   height: 30px;
   width: 60%;
@@ -30,13 +33,18 @@ body {
 }
 
 .buttons * {
+  border: none;
+  border-radius: 10px;
   font-size: 18px;
   margin: 5px;
-  background-color: black;
+  background-color: #47618c;
   color: white;
+  outline: none;
   padding: 10px 20px;
+  box-shadow: 0 8px rgba(0,0,0,0.7);
 }
 
-.buttons *:focus {
-  outline: none;
+.buttons *:active {
+  box-shadow: 0 6px rgba(0,0,0,0.7);
+  transform: translateY(2px)
 }
